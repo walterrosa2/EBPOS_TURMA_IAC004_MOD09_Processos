@@ -1,0 +1,69 @@
+# INSTRUÇÃO PARA AGENTE DE DESENVOLVIMENTO — PACOTE 04
+
+## Contexto do Projeto
+
+Você está desenvolvendo o MVP da plataforma **QDT Processos Contábeis**.
+
+O produto é uma aplicação web para gestores de operações contábeis mapearem, catalogarem, visualizarem e analisarem processos internos.
+
+Os pacotes anteriores já devem ter criado:
+
+- monorepo com `/frontend`, `/backend` e `/docs`;
+- backend FastAPI;
+- SQLite com SQLAlchemy;
+- CRUD de processos;
+- CRUD de etapas;
+- API de fluxo visual;
+- frontend React + Vite;
+- layout dashboard SaaS;
+- dashboard inicial;
+- catálogo de processos;
+- formulário de processo;
+- detalhe do processo.
+
+Neste Pacote 04, o objetivo é implementar o **Editor Visual de Fluxo**, usando **React Flow**, permitindo criar etapas, editar etapas, conectar etapas, mover etapas no canvas e persistir o layout no backend.
+
+NÃO implemente OpenAI, análise IA, diretrizes de automação, deploy Railway, login ou upload de arquivos neste pacote.
+
+---
+
+# Stack deste pacote
+
+Frontend:
+
+- React
+- Vite
+- React Router
+- React Flow
+- CSS customizado
+- Fetch API via services existentes
+
+Backend:
+
+- Consumir API já existente:
+  - `GET /api/processos/{processo_id}/fluxo`
+  - `PUT /api/processos/{processo_id}/fluxo`
+  - `GET /api/processos/{processo_id}/etapas`
+  - `POST /api/processos/{processo_id}/etapas`
+  - `PUT /api/etapas/{etapa_id}`
+  - `DELETE /api/etapas/{etapa_id}`
+
+---
+
+# Objetivo do Pacote 04
+
+Ao final deste pacote, o usuário deve conseguir:
+
+```text
+Abrir o editor visual de um processo.
+Visualizar etapas como blocos no canvas.
+Criar uma nova etapa.
+Editar dados de uma etapa.
+Excluir uma etapa.
+Mover etapas no canvas.
+Conectar uma etapa a outra.
+Remover conexão.
+Salvar o fluxo visual.
+Recarregar a tela e ver o fluxo persistido.
+Voltar para o detalhe do processo.
+Ver estados de loading, erro e vazio.

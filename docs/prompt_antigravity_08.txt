@@ -1,0 +1,38 @@
+# INSTRUÇÃO PARA AGENTE DE DESENVOLVIMENTO — PACOTE 08
+
+## Objetivo
+
+Validar o MVP do QDT Processos Contábeis usando processos reais ou simulados da operação contábil, identificar lacunas de usabilidade, qualidade dos dados cadastrados, qualidade das análises da IA e necessidade de ajustes antes da Fase 2.
+
+NÃO implementar novas grandes funcionalidades neste pacote.
+
+---
+
+## Escopo
+
+Este pacote deve:
+
+1. Criar massa de teste operacional.
+2. Homologar fluxo completo.
+3. Avaliar qualidade da análise IA.
+4. Ajustar campos, labels e UX se necessário.
+5. Registrar problemas encontrados.
+6. Criar backlog da Fase 2.
+7. Consolidar aceite do MVP.
+
+---
+
+# TASK-120 — Criar processos piloto
+
+## Objetivo
+
+Cadastrar de 3 a 5 processos representativos da operação contábil.
+
+## Processos sugeridos
+
+```text
+1. Fechamento Fiscal Mensal
+2. Fechamento Contábil Mensal
+3. Admissão de Colaborador
+4. Folha de Pagamento Mensal
+5. Abertura de Empresa

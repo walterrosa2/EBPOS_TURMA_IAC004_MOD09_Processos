@@ -1,0 +1,149 @@
+# INSTRUÇÃO PARA AGENTE DE DESENVOLVIMENTO — PACOTE 01
+
+## Contexto do Projeto
+
+Você está desenvolvendo o MVP da plataforma **QDT Processos Contábeis**.
+
+O produto é uma aplicação web para gestores de operações contábeis mapearem, catalogarem, visualizarem e analisarem processos internos. O sistema permitirá cadastrar processos, cadastrar etapas, conectar etapas visualmente, analisar processos com IA e gerar diretrizes de automação.
+
+Nesta primeira etapa, NÃO implemente frontend, React Flow ou OpenAI.  
+O objetivo deste pacote é criar a base do projeto: monorepo, documentação, backend FastAPI, SQLite, modelos e schemas.
+
+## Stack Definida
+
+Backend:
+- Python
+- FastAPI
+- SQLAlchemy
+- Pydantic
+- SQLite
+- Uvicorn
+
+Frontend:
+- Ainda não implementar neste pacote.
+- Apenas criar pasta `/frontend` vazia com `.gitkeep`.
+
+Banco:
+- SQLite
+- Local: `sqlite:///./data/qdt_processos.db`
+- Railway: `sqlite:////app/data/qdt_processos.db`
+
+Deploy futuro:
+- Railway
+- GitHub
+- Volume persistente para SQLite em `/app/data`
+
+## Regras obrigatórias
+
+1. Não implementar login.
+2. Não implementar OpenAI neste pacote.
+3. Não implementar React neste pacote.
+4. Não salvar secrets no código.
+5. Não criar `.env` com valores reais.
+6. Adicionar `.env.example`.
+7. Adicionar `.env` ao `.gitignore`.
+8. Criar backend com separação clara entre:
+   - routes
+   - services
+   - repositories
+   - models
+   - schemas
+   - database
+   - core
+9. Usar variáveis de ambiente para configurações.
+10. Criar endpoint `GET /health`.
+11. Criar modelos SQLAlchemy para:
+   - Processo
+   - Etapa
+   - Conexao
+   - AnaliseIA
+   - DiretrizAutomacao
+12. Criar schemas Pydantic para:
+   - Processo
+   - Etapa
+   - Fluxo
+   - AnaliseIA
+   - DiretrizAutomacao
+13. Validar campos obrigatórios:
+   - Processo: `nome`, `area`
+   - Etapa: `nome`
+   - Conexao: `etapa_origem_id`, `etapa_destino_id`
+14. Criar as tabelas automaticamente na inicialização do backend para o MVP.
+15. Garantir que o diretório `data/` exista antes de criar o SQLite.
+16. Não criar código desnecessário ou complexo.
+17. Toda entrega deve rodar localmente.
+
+## Estrutura esperada
+
+Criar a seguinte estrutura:
+
+```text
+qdt-processos-ctb/
+  frontend/
+    .gitkeep
+
+  backend/
+    app/
+      __init__.py
+      main.py
+
+      api/
+        __init__.py
+        routes/
+          __init__.py
+
+      core/
+        __init__.py
+        config.py
+
+      database/
+        __init__.py
+        base.py
+        session.py
+
+      models/
+        __init__.py
+        processo.py
+        etapa.py
+        conexao.py
+        analise.py
+        diretriz.py
+
+      schemas/
+        __init__.py
+        processo_schema.py
+        etapa_schema.py
+        fluxo_schema.py
+        analise_schema.py
+        diretriz_schema.py
+
+      services/
+        __init__.py
+
+      repositories/
+        __init__.py
+
+    tests/
+      __init__.py
+      test_health.py
+
+    data/
+      .gitkeep
+
+    requirements.txt
+    README.md
+    .env.example
+
+  docs/
+    vision.md
+    requirements.md
+    spec.md
+    architecture.md
+    backlog.md
+    decisions.md
+    tests.md
+    deployment.md
+    changelog.md
+
+  .gitignore
+  README.md

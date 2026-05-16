@@ -1,0 +1,23 @@
+# Checklist - Pacote 05
+
+- [x] `openai` foi adicionada ao `requirements.txt`.
+- [x] `OPENAI_API_KEY` está no `.env.example` sem valor real.
+- [x] `OPENAI_MODEL` usa default `gpt-4o`.
+- [x] `system_process_mapper.md` foi criado.
+- [x] `user_process_analysis_template.md` foi criado.
+- [x] `AnaliseIAResultadoSchema` valida o JSON esperado.
+- [x] `ia_service.py` carrega prompts e chama OpenAI.
+- [x] `ia_service.py` trata ausência de chave.
+- [x] `ia_service.py` trata JSON inválido.
+- [x] `analise_service.py` bloqueia processo sem etapas.
+- [x] endpoint POST `/api/processos/{id}/analises` funciona.
+- [x] análise é salva no SQLite.
+- [x] análises anteriores não são apagadas.
+- [x] diretrizes são criadas a partir da análise.
+- [x] GET `/api/processos/{id}/diretrizes` funciona.
+- [x] PUT `/api/diretrizes/{id}` atualiza status.
+- [x] testes de schema passam.
+- [x] testes de API passam.
+- [x] testes não chamam OpenAI real.
+- [x] documentação foi atualizada.
+- [x] nenhuma chave foi versionada.

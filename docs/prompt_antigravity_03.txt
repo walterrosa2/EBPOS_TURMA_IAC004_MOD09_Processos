@@ -1,0 +1,59 @@
+# INSTRUÇÃO PARA AGENTE DE DESENVOLVIMENTO — PACOTE 03
+
+## Contexto do Projeto
+
+Você está desenvolvendo o MVP da plataforma **QDT Processos Contábeis**.
+
+O produto é uma aplicação web para gestores de operações contábeis mapearem, catalogarem, visualizarem e analisarem processos internos. O sistema permitirá cadastrar processos, cadastrar etapas, conectar etapas visualmente, analisar processos com IA e gerar diretrizes de automação.
+
+Os Pacotes 01 e 02 já devem ter criado:
+
+- monorepo com `/frontend`, `/backend` e `/docs`;
+- backend FastAPI;
+- SQLite com SQLAlchemy;
+- models SQLAlchemy;
+- schemas Pydantic;
+- rota `GET /health`;
+- CRUD de processos;
+- CRUD de etapas;
+- API de fluxo visual;
+- testes de backend;
+- documentação base.
+
+Neste Pacote 03, o objetivo é implementar a primeira versão funcional do **frontend React**, com visual moderno estilo dashboard SaaS, integração com a API de processos e navegação básica.
+
+NÃO implemente React Flow, editor visual, OpenAI, análise IA, diretrizes de automação ou deploy Railway neste pacote.
+
+---
+
+# Stack Frontend
+
+Usar:
+
+- React
+- Vite
+- React Router
+- CSS customizado
+- Fetch API ou Axios
+
+Preferência: usar **Fetch API nativa** para reduzir dependências neste MVP, salvo se já houver Axios instalado.
+
+---
+
+# Objetivo do Pacote 03
+
+Ao final deste pacote, o usuário deve conseguir:
+
+```text
+Acessar a aplicação frontend.
+Ver um layout moderno com sidebar e header.
+Visualizar dashboard inicial.
+Listar processos vindos do backend.
+Filtrar processos por área, criticidade, status e texto livre.
+Criar novo processo.
+Editar processo existente.
+Excluir processo.
+Abrir tela de detalhe do processo.
+Visualizar metadados principais do processo.
+Navegar entre Dashboard, Processos e Detalhe.
+Ver estados de loading, erro e lista vazia.

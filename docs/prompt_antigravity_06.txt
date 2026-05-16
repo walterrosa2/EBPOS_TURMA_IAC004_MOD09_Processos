@@ -1,0 +1,61 @@
+# INSTRUÇÃO PARA AGENTE DE DESENVOLVIMENTO — PACOTE 06
+
+## Contexto do Projeto
+
+Você está desenvolvendo o MVP da plataforma **QDT Processos Contábeis**.
+
+O produto é uma aplicação web para gestores de operações contábeis mapearem, catalogarem, visualizarem e analisarem processos internos.
+
+Os pacotes anteriores já devem ter criado:
+
+- monorepo com `/frontend`, `/backend` e `/docs`;
+- backend FastAPI;
+- SQLite com SQLAlchemy;
+- CRUD de processos;
+- CRUD de etapas;
+- API de fluxo visual;
+- frontend React + Vite;
+- layout dashboard SaaS;
+- dashboard inicial;
+- catálogo de processos;
+- formulário de processo;
+- detalhe do processo;
+- editor visual com React Flow;
+- integração backend com OpenAI GPT-4o;
+- system prompt especialista;
+- endpoint de análise IA;
+- persistência de análise IA;
+- geração de diretrizes de automação;
+- endpoints de diretrizes.
+
+Neste Pacote 06, o objetivo é implementar o **frontend da análise IA** e a **tela de diretrizes de automação**.
+
+NÃO implemente login.  
+NÃO implemente deploy Railway.  
+NÃO implemente upload de documentos.  
+NÃO implemente exportação PDF.  
+NÃO altere o system prompt neste pacote, salvo correção de bug explícita.
+
+---
+
+# Objetivo do Pacote 06
+
+Ao final deste pacote, o usuário deve conseguir:
+
+```text
+Abrir o detalhe de um processo.
+Clicar em "Analisar com IA".
+Gerar uma nova análise usando o backend.
+Visualizar loading enquanto a análise é gerada.
+Visualizar erro amigável se a análise falhar.
+Abrir a tela de análises do processo.
+Listar análises anteriores.
+Visualizar o resultado estruturado da análise.
+Ver resumo executivo, diagnóstico e nível de maturidade.
+Ver gargalos, riscos, melhorias, automações e oportunidades de IA.
+Ver lacunas de mapeamento e perguntas para aprofundamento.
+Abrir a tela de diretrizes de automação.
+Listar diretrizes geradas pela IA.
+Filtrar diretrizes por prioridade, tipo e status.
+Atualizar status de uma diretriz.
+Voltar para o detalhe do processo.

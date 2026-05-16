@@ -1,0 +1,22 @@
+# Checklist - Pacote 02
+
+- [x] Endpoints de processos implementados.
+- [x] Endpoints de etapas implementados.
+- [x] Endpoints de fluxo implementados.
+- [x] Rotas registradas em `main.py`.
+- [x] Repositories criados.
+- [x] Services criados.
+- [x] Regras de negócio fora das rotas.
+- [x] Processo sem nome retorna 422.
+- [x] Processo sem área retorna 422.
+- [x] Etapa sem nome retorna 422.
+- [x] Processo inexistente retorna 404.
+- [x] Etapa inexistente retorna 404.
+- [x] Conexão entre processos diferentes retorna 400.
+- [x] Exclusão de etapa remove conexões relacionadas.
+- [x] Fluxo salva posições X/Y.
+- [x] Fluxo salva conexões.
+- [x] Fluxo é reconstruído após GET.
+- [x] Testes de API passam.
+- [x] Documentação atualizada (Changelog 0.2.0, Tests e Backlog).
+- [x] Nenhuma chave ou segredo foi versionado.

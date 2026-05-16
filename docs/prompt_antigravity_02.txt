@@ -1,0 +1,65 @@
+# INSTRUÇÃO PARA AGENTE DE DESENVOLVIMENTO — PACOTE 02
+
+## Contexto do Projeto
+
+Você está desenvolvendo o MVP da plataforma **QDT Processos Contábeis**.
+
+O projeto já deve possuir a base criada no Pacote 01:
+
+- monorepo com `/frontend`, `/backend` e `/docs`;
+- backend FastAPI;
+- SQLite com SQLAlchemy;
+- models SQLAlchemy;
+- schemas Pydantic;
+- rota `GET /health`;
+- documentação base em `/docs`.
+
+Neste Pacote 02, o objetivo é implementar a primeira API funcional do sistema:
+
+1. CRUD de processos;
+2. CRUD de etapas;
+3. API de fluxo visual para recuperar e salvar etapas, posições e conexões.
+
+NÃO implemente frontend, React, React Flow, OpenAI ou deploy neste pacote.
+
+---
+
+# Stack
+
+Backend:
+
+- Python
+- FastAPI
+- SQLAlchemy
+- Pydantic
+- SQLite
+- Pytest
+
+Banco:
+
+- SQLite local: `sqlite:///./data/qdt_processos.db`
+- Railway futuro: `sqlite:////app/data/qdt_processos.db`
+
+---
+
+# Objetivo do Pacote 02
+
+Ao final deste pacote, a API deve permitir:
+
+```text
+Criar processo
+Listar processos
+Filtrar processos
+Buscar processo por ID
+Editar processo
+Excluir processo
+Criar etapa vinculada a processo
+Listar etapas de processo
+Editar etapa
+Excluir etapa
+Buscar fluxo completo de processo
+Salvar layout visual do fluxo
+Persistir conexões entre etapas
+Persistir posição X/Y das etapas
+Validar erros de domínio
+Testar endpoints principais

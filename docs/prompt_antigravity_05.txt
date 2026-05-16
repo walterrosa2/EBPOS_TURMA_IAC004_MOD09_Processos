@@ -1,0 +1,87 @@
+# INSTRUÇÃO PARA AGENTE DE DESENVOLVIMENTO — PACOTE 05
+
+## Contexto do Projeto
+
+Você está desenvolvendo o MVP da plataforma **QDT Processos Contábeis**.
+
+O produto é uma aplicação web para gestores de operações contábeis mapearem, catalogarem, visualizarem e analisarem processos internos.
+
+Os pacotes anteriores já devem ter criado:
+
+- monorepo com `/frontend`, `/backend` e `/docs`;
+- backend FastAPI;
+- SQLite com SQLAlchemy;
+- CRUD de processos;
+- CRUD de etapas;
+- API de fluxo visual;
+- frontend React + Vite;
+- layout dashboard SaaS;
+- dashboard inicial;
+- catálogo de processos;
+- formulário de processo;
+- detalhe do processo;
+- editor visual com React Flow;
+- criação, edição, exclusão e conexão de etapas;
+- persistência de posições X/Y e conexões.
+
+Neste Pacote 05, o objetivo é implementar a camada de IA no backend:
+
+1. criar system prompt especialista;
+2. criar template de user prompt;
+3. criar schema completo de resposta da IA;
+4. integrar com OpenAI usando modelo `gpt-4o`;
+5. validar resposta estruturada;
+6. persistir análise no SQLite;
+7. gerar diretrizes de automação;
+8. criar endpoints de análise e diretrizes;
+9. criar testes de schema, serviço e API;
+10. atualizar documentação.
+
+NÃO implemente frontend de análise neste pacote.  
+NÃO implemente login.  
+NÃO implemente deploy Railway.  
+NÃO implemente upload de arquivos.
+
+---
+
+# Stack deste pacote
+
+Backend:
+
+- Python
+- FastAPI
+- SQLAlchemy
+- Pydantic
+- SQLite
+- OpenAI Python SDK
+- Pytest
+
+Modelo LLM:
+
+- Provider: OpenAI
+- Modelo: `gpt-4o`
+- Variável: `OPENAI_MODEL=gpt-4o`
+
+---
+
+# Objetivo do Pacote 05
+
+Ao final deste pacote, o backend deve conseguir:
+
+```text
+Receber solicitação de análise para um processo.
+Buscar processo, etapas e conexões no SQLite.
+Bloquear análise se o processo não tiver etapas.
+Montar payload estruturado para IA.
+Carregar system prompt especialista.
+Carregar template de user prompt.
+Enviar requisição para OpenAI usando gpt-4o.
+Solicitar saída estruturada em JSON.
+Validar resposta com Pydantic.
+Salvar análise no SQLite.
+Gerar diretrizes de automação no banco.
+Listar análises de um processo.
+Buscar análise específica.
+Listar diretrizes de automação.
+Atualizar status de uma diretriz.
+Tratar erros de OpenAI, JSON inválido e ausência de chave.
