@@ -1,0 +1,58 @@
+# ── Controle de versão ────────────────────────────────────────────────────────
+.git
+.gitignore
+
+# ── Ambientes virtuais Python ─────────────────────────────────────────────────
+backend/.venv
+backend/venv
+backend/env
+
+# ── Cache Python ──────────────────────────────────────────────────────────────
+**/__pycache__
+**/*.py[cod]
+**/*.pyo
+
+# ── Node.js ───────────────────────────────────────────────────────────────────
+frontend/node_modules
+frontend/.vite
+
+# ── Dist do frontend (será gerado no Stage 1) ─────────────────────────────────
+frontend/dist
+
+# ── Variáveis de ambiente locais (NUNCA no container) ─────────────────────────
+**/.env
+# Mas manter o .env.example para referência
+!**/.env.example
+
+# ── Banco de dados locais ─────────────────────────────────────────────────────
+**/*.db
+**/*.sqlite3
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+**/logs
+**/*.log
+
+# ── Testes e CI ───────────────────────────────────────────────────────────────
+**/.pytest_cache
+**/htmlcov
+**/.coverage
+**/coverage.xml
+
+# ── Lixo / quarentena ────────────────────────────────────────────────────────
+**/_trash
+**/artifacts
+
+# ── IDEs e OS ─────────────────────────────────────────────────────────────────
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+*.suo
+*.user
+
+# ── Docs e arquivos de projeto ────────────────────────────────────────────────
+docs/
+docs.rar
+README.md
+_start.ps1
+_start.bat

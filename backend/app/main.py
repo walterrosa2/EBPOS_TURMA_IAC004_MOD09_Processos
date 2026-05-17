@@ -46,3 +46,36 @@ app.include_router(diretrizes.router)
 @app.get("/health", tags=["Health"])
 def health_check():
     return {"status": "ok", "service": "qdt-backend"}
+
+# ── Integração SPA (FastAPI + React) ──────────────────────────────────────────
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+# Tenta caminhos prováveis para o diretório dist do frontend (robusto local/produção)
+possible_paths = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist")),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")),
+    os.path.abspath(os.path.join(os.getcwd(), "frontend", "dist")),
+]
+
+frontend_path = None
+for path in possible_paths:
+    if os.path.exists(os.path.join(path, "index.html")):
+        frontend_path = path
+        break
+
+if frontend_path:
+    # Serve a pasta /assets com os estáticos compilados do React
+    assets_dir = os.path.join(frontend_path, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+    
+    # Catch-all para servir o SPA React nas demais rotas de frontend
+    @app.get("/{rest_of_path:path}")
+    async def serve_frontend(rest_of_path: str):
+        # Ignora rotas da API para não mascarar erros 404 reais do backend
+        if rest_of_path.startswith("api/"):
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404, detail="API endpoint not found")
+        return FileResponse(os.path.join(frontend_path, "index.html"))
+

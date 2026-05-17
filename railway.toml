@@ -1,0 +1,10 @@
+# railway.toml — Raiz do monorepo
+# O Railway detecta o Dockerfile na raiz e usa este arquivo para configurações de deploy.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
