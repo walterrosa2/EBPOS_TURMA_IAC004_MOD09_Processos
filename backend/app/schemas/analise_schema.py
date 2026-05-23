@@ -1,6 +1,41 @@
-from pydantic import BaseModel
-from typing import Optional, List, Literal
+from pydantic import BaseModel, BeforeValidator
+from typing import Optional, List, Literal, Annotated
 from datetime import datetime
+
+# --- Normalização de escalas qualitativas vindas da IA ---
+# A LLM frequentemente varia gênero/acento/caixa (ex.: "Alta" no lugar de "Alto",
+# "media" sem acento). Normalizamos para a forma canônica ANTES da validação,
+# preservando a tipagem rígida do schema.
+
+# Cada chave (sem acento, minúscula) mapeia para (forma masculina, forma feminina).
+_ESCALA_BASE = {
+    "baixo": ("Baixo", "Baixa"),
+    "baixa": ("Baixo", "Baixa"),
+    "medio": ("Médio", "Média"),
+    "media": ("Médio", "Média"),
+    "alto": ("Alto", "Alta"),
+    "alta": ("Alto", "Alta"),
+}
+
+_ACENTOS = str.maketrans("áàâãéèêíïóôõöúüç", "aaaaeeeiioooouuc")
+
+def _normalizar_escala(valor, feminino: bool):
+    if not isinstance(valor, str):
+        return valor
+    chave = valor.strip().lower().translate(_ACENTOS)
+    if chave in _ESCALA_BASE:
+        return _ESCALA_BASE[chave][1 if feminino else 0]
+    return valor
+
+EscalaMasculina = Annotated[
+    Literal["Baixo", "Médio", "Alto"],
+    BeforeValidator(lambda v: _normalizar_escala(v, feminino=False)),
+]
+EscalaFeminina = Annotated[
+    Literal["Baixa", "Média", "Alta"],
+    BeforeValidator(lambda v: _normalizar_escala(v, feminino=True)),
+]
+
 
 class NivelMaturidadeSchema(BaseModel):
     nivel: Literal["Inicial", "Repetível", "Padronizado", "Gerenciado", "Otimizado"]
@@ -10,23 +45,23 @@ class GargaloSchema(BaseModel):
     titulo: str
     descricao: str
     etapa_relacionada: Optional[str] = None
-    impacto: Literal["Baixo", "Médio", "Alto"]
+    impacto: EscalaMasculina
 
 class RiscoSchema(BaseModel):
     titulo: str
     descricao: str
     tipo: Literal["operacional", "prazo", "qualidade", "compliance", "dados", "dependencia_pessoa", "sistema", "comunicacao"]
     etapa_relacionada: Optional[str] = None
-    severidade: Literal["Baixo", "Médio", "Alto"]
+    severidade: EscalaMasculina
     mitigacao_sugerida: str
 
 class SugestaoMelhoriaSchema(BaseModel):
     titulo: str
     descricao: str
     tipo: Literal["melhoria_fluxo", "controle", "documentacao", "treinamento", "indicador", "governanca"]
-    impacto: Literal["Baixo", "Médio", "Alto"]
-    esforco: Literal["Baixo", "Médio", "Alto"]
-    prioridade: Literal["Baixa", "Média", "Alta"]
+    impacto: EscalaMasculina
+    esforco: EscalaMasculina
+    prioridade: EscalaFeminina
     etapa_relacionada: Optional[str] = None
     beneficio_esperado: str
 
@@ -34,9 +69,9 @@ class SugestaoAutomacaoSchema(BaseModel):
     titulo: str
     descricao: str
     tipo: Literal["automacao_simples", "integracao", "ia", "rpa"]
-    impacto: Literal["Baixo", "Médio", "Alto"]
-    esforco: Literal["Baixo", "Médio", "Alto"]
-    prioridade: Literal["Baixa", "Média", "Alta"]
+    impacto: EscalaMasculina
+    esforco: EscalaMasculina
+    prioridade: EscalaFeminina
     etapa_relacionada: Optional[str] = None
     pre_requisitos: List[str]
     beneficio_esperado: str
@@ -48,8 +83,8 @@ class OportunidadeIASchema(BaseModel):
     entrada_necessaria: str
     saida_esperada: str
     validacao_humana_necessaria: bool
-    impacto: Literal["Baixo", "Médio", "Alto"]
-    esforco: Literal["Baixo", "Médio", "Alto"]
+    impacto: EscalaMasculina
+    esforco: EscalaMasculina
 
 class LacunaMapeamentoSchema(BaseModel):
     campo_ou_tema: str
@@ -66,7 +101,7 @@ class DiretrizAutomacaoIASchema(BaseModel):
     titulo: str
     descricao: str
     tipo: Literal["automacao_simples", "integracao", "ia", "rpa", "workflow"]
-    prioridade: Literal["Baixa", "Média", "Alta"]
+    prioridade: EscalaFeminina
     primeiro_passo: str
     dependencias: List[str]
     criterio_sucesso: str

@@ -6,3 +6,6 @@ pydantic-settings
 python-dotenv
 pytest
 openai
+loguru
+python-docx
+python-multipart

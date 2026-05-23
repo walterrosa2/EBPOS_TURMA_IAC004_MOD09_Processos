@@ -8,7 +8,7 @@ from app.database.base import Base
 # Ensure all models are imported before creating tables
 from app.models import processo, etapa, conexao, analise, diretriz
 
-from app.api.routes import processos, etapas, fluxos, analises, diretrizes
+from app.api.routes import processos, etapas, fluxos, analises, diretrizes, importacao_processos
 
 # Ensure the data directory exists
 db_url = settings.DATABASE_URL
@@ -42,6 +42,7 @@ app.include_router(etapas.router)
 app.include_router(fluxos.router)
 app.include_router(analises.router)
 app.include_router(diretrizes.router)
+app.include_router(importacao_processos.router)
 
 @app.get("/health", tags=["Health"])
 def health_check():

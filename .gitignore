@@ -48,3 +48,11 @@ Thumbs.db
 
 # ── Trash (quarentena de arquivos movidos) ────────────────────────────────────
 _trash/
+
+# ── Artefactos de origem / inputs locais (não versionar) ──────────────────────
+*.zip
+*.rar
+prd_task_importacao_processo_ia/
+
+# ── Base de conhecimento (sincronizada por ferramenta externa) ────────────────
+knowledge/

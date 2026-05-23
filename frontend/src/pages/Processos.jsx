@@ -9,6 +9,7 @@ import LoadingState from '../components/common/LoadingState';
 import ErrorState from '../components/common/ErrorState';
 import EmptyState from '../components/common/EmptyState';
 import ConfirmDialog from '../components/common/ConfirmDialog';
+import ImportProcessModal from '../components/processos/ImportProcessModal';
 
 const Processos = () => {
   const [processos, setProcessos] = useState([]);
@@ -16,6 +17,7 @@ const Processos = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [processoParaExcluir, setProcessoParaExcluir] = useState(null);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const fetchProcessos = async () => {
@@ -54,7 +56,15 @@ const Processos = () => {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <ProcessoFilters filters={filters} onFilterChange={setFilters} />
-        <Button onClick={() => navigate('/processos/novo')} style={{ marginBottom: '24px' }}>+ Novo Processo</Button>
+        <div style={{ display: 'flex', gap: '12px' }}>
+          <Button 
+            onClick={() => setIsImportModalOpen(true)} 
+            style={{ backgroundColor: '#0284c7', color: '#ffffff' }}
+          >
+            💻 Importar por IA
+          </Button>
+          <Button onClick={() => navigate('/processos/novo')}>+ Novo Processo</Button>
+        </div>
       </div>
 
       <Card>
@@ -79,6 +89,14 @@ const Processos = () => {
         message="Tem certeza de que deseja excluir este processo? Todas as etapas relacionadas também serão removidas. Esta ação não pode ser desfeita."
         onConfirm={handleExcluir}
         onCancel={() => setProcessoParaExcluir(null)}
+      />
+
+      <ImportProcessModal
+        isOpen={isImportModalOpen}
+        onClose={() => {
+          setIsImportModalOpen(false);
+          fetchProcessos();
+        }}
       />
     </div>
   );

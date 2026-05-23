@@ -19,6 +19,7 @@ O projeto segue a arquitetura de monorepo separando de forma isolada frontend, b
 4. Geração de análise técnica através da IA (OpenAI GPT-4o).
 5. Visualização do diagnóstico gerencial de gargalos, riscos, e nível de maturidade.
 6. Acompanhamento do status das Diretrizes de Automação geradas pela IA.
+7. **Importação inteligente de processos por documento (.docx):** upload de um manual operacional que é higienizado, interpretado por IA e cadastrado automaticamente (processo + etapas + conexões) em transação única. Endpoint: `POST /api/processos/importar`.
 
 ## Como rodar localmente
 
@@ -53,7 +54,7 @@ A aplicação está preparada para ser publicada via Railway (veja `/docs/deploy
 
 ## Limitações do MVP
 - Autenticação e gestão de múltiplos usuários não incluídos.
-- Upload de documentos ou leitura em anexo aos processos requer implementações na próxima fase.
+- A importação inteligente por documento suporta apenas o formato `.docx` (limite de 10 MB); outros formatos (PDF, imagens) ficam para a próxima fase.
 - IA roda exclusivamente no escopo do `gpt-4o`.
 
 ## Roadmap
